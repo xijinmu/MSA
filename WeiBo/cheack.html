@@ -1,34 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>倒钩查询系统</title>
+  <title>倒钩查询系统</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
-<h3>手机号查询微博</h3>
-<form action="https://zy.xywlapi.cc/wbphone" method="get">
-    <label for="name1">手机号：</label>
-    <input type="text" id="name2" name="phone" placeholder="手机号"><br>
+  <div class="box">
+    <div class="search-container">
+      <h3 class="title">手机号关联微博</h3>
+      <form action="https://zy.xywlapi.cc/wbphone">
+        <input type="text" class="search-input" name="phone" placeholder=" 输入手机号" />
+        <button class="search-btn">立即搜索</button>
+      </form>
+    </div>
   
-    <input type="submit" value="Submit">
-  </form>
-
-<h3>微博反查手机号</h3>
-<form action="https://zy.xywlapi.cc/wbapi" method="get">
-    <label for="name1">微博 UID 号：</label>
-    <input type="text" id="name2" name="id" placeholder="UID"><br>
-
-    <input type="submit" value="Submit">
-</form>
-
-<h3>qq反查手机号</h3>
-<form action="https://zy.xywlapi.cc/qqapi" method="get">
-    <label for="name1"> QQ 号：</label>
-    <input type="text" id="name2" name="qq" placeholder="QQ号"><br>
-
-    <input type="submit" value="Submit">
-</form>
+    <div class="search-container">
+      <h3 class="title">微博倒查手机号</h3>
+      <form action="https://zy.xywlapi.cc/wbapi">
+        <input type="text" class="search-input" name="id" placeholder=" 输入UID号" />
+        <button class="search-btn">立即搜索</button>
+      </form>
+    </div>
+  
+    <div class="search-container">
+      <h3 class="title"> QQ 号倒查手机号</h3>
+      <form action="https://zy.xywlapi.cc/qqapi">
+        <input type="text" class="search-input" name="qq" placeholder=" 输入QQ号" />
+        <button class="search-btn">立即搜索</button>
+      </form>
+    </div>
+  </div>
 
 </body>
 </html>
