@@ -1,35 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>倒钩查询系统</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+<title>倒钩查询系统</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script>
+
+$(document).ready(function(){
+
+  $("#buttonPhone").click(function(){
+	  var phoneNumber = document.getElementById("phone");
+	  var number = phoneNumber.value;
+    $.post("https://zy.xywlapi.cc/wbphone",
+    {
+      phone:number
+    },
+    function(data,status){
+    var output = "微博地址为："+"https://weibo.com/u/"+data.id;
+    document.getElementById("weiboOutput").innerHTML =  output;
+    });
+  });
+// UID->phone
+  $("#buttonLink").click(function(){
+	  var phoneNumber = document.getElementById("UIDlink");
+	  var number = phoneNumber.value.slice(-10);
+    //   alert(number);
+    $.post("https://zy.xywlapi.cc/wbapi",
+    {
+      id:number
+    },
+    function(data,status){
+    var output = "手机号为："+data.phone+"<br>"+"归属地为："+data.phonediqu;
+    document.getElementById("phoneOutput").innerHTML =  output;
+    });
+  });
+// QQ->phone
+    $("#buttonQQ").click(function(){
+	  var phoneNumber = document.getElementById("QQ");
+	  var number = phoneNumber.value;
+    //   alert(number);
+    $.post("https://zy.xywlapi.cc/qqapi",
+    {
+      qq:number
+    },
+    function(data,status){
+    var output = "手机号为："+data.phone;
+    document.getElementById("QQOutput").innerHTML =  output;
+    });
+  });
+
+
+});
+</script>
 </head>
 <body>
-  <div class="box">
+<div class="box">
     <div class="search-container">
-      <h3 class="title">手机号关联微博</h3>
-      <form action="https://zy.xywlapi.cc/wbphone">
-        <input type="text" class="search-input" name="phone" placeholder=" 输入手机号" />
-        <button class="search-btn">立即搜索</button>
-      </form>
-    </div>
-  
-    <div class="search-container">
-      <h3 class="title">微博倒查手机号</h3>
-      <form action="https://zy.xywlapi.cc/wbapi">
-        <input type="text" class="search-input" name="id" placeholder=" 输入UID号" />
-        <button class="search-btn">立即搜索</button>
-      </form>
-    </div>
-  
-    <div class="search-container">
-      <h3 class="title"> QQ 号倒查手机号</h3>
-      <form action="https://zy.xywlapi.cc/qqapi">
-        <input type="text" class="search-input" name="qq" placeholder=" 输入QQ号" />
-        <button class="search-btn">立即搜索</button>
-      </form>
-    </div>
-  </div>
+        <h3 class="title">手机号关联微博</h3>
+        <input type="text" class="search-input" id="phone" placeholder=" 输入手机号" />	
+        <button id="buttonPhone" class="search-btn">立即查询</button>
+        <p id="weiboOutput"></p>
 
+<div class="box">
+    <div class="search-container">
+        <h3 class="title">微博倒查手机号</h3>
+        <input type="text" class="search-input" id="UIDlink" placeholder="输入微博地址" />	
+        <button id="buttonLink" class="search-btn">立即查询</button>
+        <p id="phoneOutput"></p>
+
+<div class="box">
+    <div class="search-container">
+        <h3 class="title">QQ倒查手机号</h3>
+        <input type="text" class="search-input" id="QQ" placeholder="输入QQ号">	
+        <button id="buttonQQ" class="search-btn">立即查询</button>
+        <p id="QQOutput"></p>
 </body>
 </html>
